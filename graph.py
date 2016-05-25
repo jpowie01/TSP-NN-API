@@ -43,40 +43,15 @@ class Graph:
 
 
 def convert_output(output, N):
-    # Prepare result
-    result = []
-    for i in range(N):
-        result_tmp = []
-        for t in range(N):
-            result_tmp.append(0)
-        result.append(result_tmp)
-
-    # Default values
-    tab = list(output)
-    best_value = -100
-    best_x = -1
-    best_y = -1
-
-    # Iteration through whole output
-    for i in range(1, N*N + 1):
+    order = [0, 0, 0, 0, 0]
+    for x in range(N):
+        best_y = None
+        best_y_value = -1
         for y in range(N):
-            for x in range(N):
-                if tab[N*y + x] > best_value:
-                    best_value = tab[N*y + x]
-                    best_x = x
-                    best_y = y
-        result[best_x][best_y] = i
-        tab[N*best_y + best_x] = -100
-        best_value = -100
-
-    order = []
-    for i in range(N*N+1):
-        for x in range(N):
-            best_y = None
-            for y in range(N):
-                if result[x][y] == i:
-                    best_y = y
-            if best_y is not None and best_y not in order:
-                order.append(best_y)
-    # MAYBE DFS THROUGH THE GENERATED TREE?
+            if output[y*N + x] > best_y_value:
+                best_y = y
+                best_y_value = output[y*N + x]
+        order[best_y] = x
+        for i in range(N):
+            output[best_y*N + i] = -1
     return order
