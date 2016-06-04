@@ -17,5 +17,6 @@ tsp_model_output = api.model('TSP', {
     'expected': fields.List(fields.List(fields.Float), description='Two dimensional array with data'),
     'net': fields.List(fields.List(fields.Float), description='Two dimensional array with data'),
     'expected_order': fields.List(fields.Integer, description='Expected order of points'),
-    'net_order': fields.List(fields.Integer, description='Order of points')
+    'net_order': fields.List(fields.Integer, description='Order of points'),
+    'net_error': fields.Float(description='Network error')
 })

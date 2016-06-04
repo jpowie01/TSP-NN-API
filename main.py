@@ -7,7 +7,7 @@ from serializers import tsp_model_input, tsp_model_output
 from graph import Graph, convert_output
 
 
-N = 5
+N = 6
 net = NetworkReader.readFrom('neural_network.xml')
 
 
@@ -66,6 +66,21 @@ class TodoList(Resource):
         # Calculate order
         order = convert_output(net_output, N)
 
+        # Original
+        original_len = 0
+        for j in range(N - 1):
+            original_len += graph.each_to_each[graph.order_tsp_list[j]][graph.order_tsp_list[j + 1]]
+        original_len += graph.each_to_each[graph.order_tsp_list[N - 1]][graph.order_tsp_list[0]]
+
+        # Compute
+        network_len = 0
+        for j in range(N - 1):
+            network_len += graph.each_to_each[order[j]][order[j + 1]]
+        network_len += graph.each_to_each[order[N - 1]][order[0]]
+
+        # Log
+        print('Original:', original_len, 'Network:', network_len, 'Error:', abs(original_len-network_len)/original_len*100, '%')
+
         # Update order
         graph.order_tsp_list = list(map(lambda x: x + 1, graph.order_tsp_list))
         order = list(map(lambda x: x + 1, order))
@@ -75,7 +90,8 @@ class TodoList(Resource):
             'expected': output,
             'net': net_output_array,
             'expected_order': graph.order_tsp_list,
-            'net_order': order
+            'net_order': order,
+            'net_error': abs(original_len-network_len)/original_len * 100
         }
 
 
