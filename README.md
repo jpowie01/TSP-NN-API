@@ -20,5 +20,5 @@ This should be all. Your API will be running on [http://localhost:5000/](http://
 - [TSP NN Training](https://github.com/jpowie01/TSP-NN-Training)
 
 ## Authors
-- Jakub Powierza
-- Karolina Olszewska
+- [Jakub Powierza](https://github.com/jpowie01)
+- [Karolina Olszewska](https://github.com/kolszewska)
