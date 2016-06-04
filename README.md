@@ -18,3 +18,7 @@ This should be all. Your API will be running on [http://localhost:5000/](http://
 ## Other project repositories
 - [TSP NN UI](https://github.com/jpowie01/TSP-NN-UI)
 - [TSP NN Training](https://github.com/jpowie01/TSP-NN-Training)
+
+## Authors
+- Jakub Powierza
+- Karolina Olszewska
